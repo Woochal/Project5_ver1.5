@@ -1,10 +1,11 @@
-package com.example.DAO;
+package com.example;
 
-import com.example.DAO.BoardDAO;
+import com.example.Service.BoardService;
 import com.example.bean.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,27 +13,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BoardController {
 
     @Autowired
-    BoardDAO boardDAO;
+    BoardService boardService;
 
-    @RequestMapping(value = "/board/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String boardlist(Model model) {
-        model.addAttribute("list", boardDAO.getBoardList());
+        model.addAttribute("list", boardService.getBoardList());
         return "list";
     }
 
-    @RequestMapping(value = "/board/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPost() {
         return "addpostform";
     }
 
-    @RequestMapping(value = "/board/addok", method = RequestMethod.POST)
+    @RequestMapping(value = "/addok", method = RequestMethod.POST)
     public String addPostOk(BoardVO vo) {
-        int i = boardDAO.insertBoard(vo);
+        int i = boardService.insertBoard(vo);
         if (i == 0)
             System.out.println("데이터 추가 실패");
         else
             System.out.println("데이터 추가 성공");
         return "redirect:list";
+    }
+
+    @RequestMapping(value = "/editform/{id}", method = RequestMethod.GET)
+    public String editPost(@PathVariable("id") int id, Model model) {
+        BoardVO boardVO = boardService.getBoard(id);
+        model.addAttribute("u", boardVO);
+        return "editform";
+    }
+
+    @RequestMapping(value = "/editok", method = RequestMethod.POST)
+    public String editPostOk(BoardVO vo) {
+        int i = boardService.updateBoard(vo);
+        if (i == 0)
+            System.out.println("데이터 수정 실패");
+        else
+            System.out.println("데이터 수정 성공");
+        return "redirect:list";
+    }
+
+    @RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
+    public String deletePostOk(@PathVariable("id") int id) {
+        int i = boardService.deleteBoard(id);
+        if (i == 0)
+            System.out.println("데이터 추가 실패");
+        else
+            System.out.println("데이터 추가 성공");
+        return "redirect:../list";
     }
 
 }

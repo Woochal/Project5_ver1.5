@@ -1,49 +1,69 @@
-package com.crud.bean;
+package com.example.bean;
 
 import java.util.Date;
 
 public class BoardVO {
-	private int seq;
-	private String title;
-	private String writer;
-	private String content;
-	private Date regdate;
-	private int cnt;
-	
-	public int getSeq() {
-		return seq;
+	private int assignNum;
+	private int assignLevel;
+	private String assignName;
+	private String className;
+	private String createDate;
+	private String dueDate;
+	private boolean teamAssign;
+	private boolean complete;
+
+
+
+
+	public int getAssignNum() {
+		return assignNum;
 	}
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setAssignNum(int assignNum) {
+		this.assignNum = assignNum;
 	}
-	public String getTitle() {
-		return title;
+	public int getAssignLevel() {
+		return assignLevel;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setAssignLevel(int assignLevel) {
+		this.assignLevel = assignLevel;
 	}
-	public String getWriter() {
-		return writer;
+	public String getAssignName() {
+		return assignName;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setAssignName(String assignName) {
+		this.assignName = assignName;
 	}
-	public String getContent() {
-		return content;
+	public String getClassName() {
+		return className;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setClassName(String className) {
+		this.className = className;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public String getCreateDate() {
+		return createDate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
-	public int getCnt() {
-		return cnt;
+
+	public String getDueDate() {
+		return dueDate;
 	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public boolean getTeamAssign() {
+		return teamAssign;
+	}
+	public void setTeamAssign(boolean teamAssign) {
+		this.teamAssign = teamAssign;
+	}
+	public boolean getComplete() {
+		return complete;
+	}
+	public void setComplete(boolean complete) {
+		this.complete = complete;
 	}
 }

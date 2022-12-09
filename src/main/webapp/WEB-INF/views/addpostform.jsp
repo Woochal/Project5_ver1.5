@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" pageEncoding="UTF-8" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W.C HOTEL</title>
-    <link rel="stylesheet" href="my.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Do Your Assignment</title>
+    <link rel="stylesheet" href="${path}/resources/css/my.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -18,10 +21,10 @@
                 return false;
             }
 
-            var indate = document.getElementById("checkIn").value;
-            var outdate = document.getElementById("checkOut").value;
+            var indate = document.getElementById("createDate").value;
+            var outdate = document.getElementById("dueDate").value;
             if(indate > outdate){
-                alert("체크인 날짜가 체크아웃 날짜 보다 더 느립니다.");
+                alert("마감 날짜가 생성 날짜 보다 더 느립니다.");
                 indate.focus();
                 return false;
             }
@@ -53,74 +56,64 @@
 
 <div>
     <div id="header">
-        <a id="homeTitle" href="home.html">W.C HOTEL</a>
+        <a id="homeTitle" href="list" style="color: #225699">Do Your Assignment</a>
     </div>
-    <div id="nav">
-        <a id="about" href="about.html">About</a>
-        <span> | </span>
-        <a id="rooms" href="rooms.html">Rooms</a>
-        <span> | </span>
-        <a id="reservation" href="index.html">Reservation</a>
-        <span> | </span>
-        <a id="community" href="community.html">Community</a>
-    </div>
+
 </div>
-<div id="space">
-</div>
+
+<div id="space" style="margin-top: 7%"></div>
+
 <div id="resTitle" class="container">
     <div class="row">
-        <div class="col-12">Hotel Reservation Management </div>
+        <div class="col-12">Assignment Management </div>
     </div>
     <hr>
 </div>
 <div id="formdiv" class="container">
-    <form action="addpost.jsp" method="post" <%--enctype="multipart/form-data"--%> class="needs-validation" name="hotel" onsubmit="return validationCheck()"  novalidate>
+    <form action="addok" method="post" <%--enctype="multipart/form-data"--%> class="needs-validation" name="assignment" onsubmit="return validationCheck()"  novalidate>
         <div class="row mb-5">
             <div class="col-md-4">
-                <label class="form-label" for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control" required>
-                <div class="invalid-feedback">Name is required.</div>
+                <label class="form-label" for="assignLevel">난이도</label>
+                <input type="text" name="assignLevel" id="assignLevel" class="form-control" required>
+                <div class="invalid-feedback">과제 난이도를 알려 주세요</div>
             </div>
             <div class="col-md-4">
-                <label class="form-label" for="phone">Phone</label>
-                <input type="tel" name="phone" id="phone" class="form-control" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" placeholder="01012345678" required>
-                <div class="invalid-feedback">Phone number is required.</div>
+                <label class="form-label" for="assignName">과제 이름</label>
+                <input type="text" name="assignName" id="assignName" class="form-control" required>
+                <div class="invalid-feedback">과제 이름을 알려 주세요</div>
             </div>
             <div class="col-md-4">
-                <label class="form-label" for="guests">Guests</label>
-                <input type="number" name="guests" id="guests" class="form-control" required>
-                <div class="invalid-feedback">Number of guest is required.</div>
+                <label class="form-label" for="className">해당 강의</label>
+                <input type="text" name="className" id="className" class="form-control" required>
+                <div class="invalid-feedback">강의 이름을 알려 주세요</div>
             </div>
         </div>
         <div class="row mb-5">
             <div class="col-md-4">
-                <label class="form-label" for="roomNum">Room Number</label>
-                <input type="number" name="roomNum" id="roomNum" class="form-control" required>
-                <div class="invalid-feedback">Room number is required.</div>
+                <label class="form-label" for="createDate">과제 배포 날짜</label>
+                <input type="date" name="createDate" id="createDate" class="form-control" required>
+                <div class="invalid-feedback">과제 베포 날짜를 알려 주세요</div>
             </div>
             <div class="col-md-4">
-                <label class="form-label" for="checkIn">Check In</label>
-                <input type="date" name="checkIn" id="checkIn" class="form-control" required>
-                <div class="invalid-feedback">Check in date is required.</div>
+                <label class="form-label" for="dueDate">과제 마감 날짜</label>
+                <input type="date" name="dueDate" id="dueDate" class="form-control" required>
+                <div class="invalid-feedback">과제 마감 날짜를 알려 주세요</div>
             </div>
-            <div class="col-md-4">
-                <label class="form-label" for="checkOut">Check Out</label>
-                <input type="date" name="checkOut" id="checkOut" class="form-control" required>
-                <div class="invalid-feedback">Check out date is required.</div>
+            <div class="col-md-2">
+                <p>팀플 여부</p>
+                <input type="radio" name="teamAssign" id="teamAssignTrue" value="true" required>
+                <label class="form-label" for="teamAssignTrue">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" name="teamAssign" id="teamAssignFalse" value="false" required>
+                <label class="form-label" for="teamAssignFalse">&nbsp;&nbsp;X&nbsp;&nbsp;</label>
+                <div class="invalid-feedback">팀플 여부를 알려 주세요</div>
             </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col-md-4">
-                <label class="form-label" for="payment">Payment</label>
-                <select id="payment" name="payment" class="form-control">
-                    <option value="Online Prepaid">Online Prepaid</option>
-                    <option value="Pay at Check In">Pay at Check In</option>
-                    <option value="Pay at Check Out">Pay at Check Out</option>
-                </select>
-            </div>
-            <div class="col-md-8">
-                <label class="form-label" for="photo">Photo</label>
-                <input type="file" name="photo" id="photo" class="form-control" >
+            <div class="col-md-2">
+                <p>완료 여부</p>
+                <input type="radio" name="complete" id="completeTrue" value="true" required>
+                <label class="form-label" for="completeTrue">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" name="complete" id="completeFalse" value="false" required>
+                <label class="form-label" for="completeFalse">&nbsp;&nbsp;X&nbsp;&nbsp;</label>
+                <div class="invalid-feedback">완료 여부를 알려 주세요</div>
             </div>
         </div>
         <hr>

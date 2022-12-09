@@ -50,14 +50,22 @@
 
 
     </script>
+    <script>
+        function trueOrFalse(abc){
+            var trueFalse = abc;
+            if (trueFalse == 0){
+                document.write("X") ;
+            }
+            else document.write("0");
+        }
+    </script>
 </head>
 <body>
 
 
-
 <div>
     <div id="header">
-        <a id="homeTitle" href="list">Do Your Assignment</a>
+        <a id="homeTitle" href="list" style="color: #225699">Do Your Assignment</a>
     </div>
 
 </div>
@@ -72,16 +80,69 @@
 </div>
 
 <div id="formdiv" class="container">
-    <form:form commandName="boardVO" action="../editok" method="POST" class="needs-validation" name="assignment" onsubmit="return validationCheck()" >
+    <form:form  modelAttribute="u" action="../editok" method="POST" class="needs-validation" name="assignment" onsubmit="return validationCheck()" >
         <form:hidden path="assignNum"/>
-        <form:input path="assignName"/>
-        <form:input path="className"/>
-        <form:input path="createDate"/>
-        <form:input path="dueDate"/>
-        <form:input path="teamAssign"/>
-
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <label class="form-label" for="assignLevel">난이도</label>
+                <form:input path="assignLevel" id="assignLevel" cssClass="form-control"/>
+                <div class="invalid-feedback">과제 난이도를 알려 주세요</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="assignName">과제 이름</label>
+                <form:input path="assignName" id="assignName" cssClass="form-control" />
+                <div class="invalid-feedback">과제 이름을 알려 주세요</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="className">해당 강의</label>
+                <form:input path="className" id="className" cssClass="form-control"/>
+                <div class="invalid-feedback">강의 이름을 알려 주세요</div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <label class="form-label" for="createDate">과제 배포 날짜</label>
+                <form:input type="date" path="createDate" id="createDate" cssClass="form-control"/>
+                <div class="invalid-feedback">과제 베포 날짜를 알려 주세요</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="dueDate">과제 마감 날짜</label>
+                <form:input type="date" path="dueDate" id="dueDate" cssClass="form-control"/>
+                <div class="invalid-feedback">과제 마감 날짜를 알려 주세요</div>
+            </div>
+            <div class="col-md-2">
+                <p>팀플 여부</p>
+                <form:radiobutton path="teamAssign" id="teamAssignTrue" value="true" />
+                <label class="form-label" for="teamAssignTrue">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <form:radiobutton path="teamAssign" id="teamAssignFalse" value="false" />
+                <label class="form-label" for="teamAssignFalse">&nbsp;&nbsp;X&nbsp;&nbsp;</label>
+                <div class="invalid-feedback">팀플 여부를 알려 주세요</div>
+            </div>
+            <div class="col-md-2">
+                <p>완료 여부</p>
+                <form:radiobutton path="complete" id="completeTrue" value="true"/>
+                <label class="form-label" for="completeTrue">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <form:radiobutton path="complete" id="completeFalse" value="false"/>
+                <label class="form-label" for="completeFalse">&nbsp;&nbsp;X&nbsp;&nbsp;</label>
+                <div class="invalid-feedback">완료 여부를 알려 주세요</div>
+            </div>
+        </div>
+        <hr>
+        <div class="row mb-5">
+            <div class="col-12 d-flex justify-content-end">
+                <input type="reset" name="reset" value="Reset" id="add">
+                <input type="submit" name="add" value="Update" id="search">
+            </div>
+        </div>
     </form:form>
+
 </div>
 
 </body>
 </html>
+
+
+
+
+
+
