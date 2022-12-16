@@ -15,7 +15,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public String boardlist(Model model) {
         model.addAttribute("list", boardService.getBoardList());
         return "list";
@@ -42,6 +42,7 @@ public class BoardController {
         model.addAttribute("u", boardVO);
         return "editform";
     }
+
 
     @RequestMapping(value = "/editok", method = RequestMethod.POST)
     public String editPostOk(BoardVO vo) {

@@ -15,14 +15,31 @@
             var trueFalse = abc;
             if (trueFalse == 0){
                 document.write("X") ;
+
             }
-            else document.write("0");
+            else {
+                document.write("0");
+            }
         }
 
         function delete_ok(id){
             var a = confirm("정말로 삭제하시겠습니까?");
             if(a) location.href='deleteok/' + id;
         }
+
+        function bg_color(abc, def){
+            if(abc == 0){
+                document.getElementById(def).style.backgroundColor='#FFE5E5';
+                document.getElementById(def).style.color='#FFFFFF';
+
+            }
+            else {
+                document.getElementById(def).style.backgroundColor = '#E8F3DA';
+                document.getElementById(def).style.color = '#FFFFFF';
+            }
+        }
+
+
     </script>
 
 </head>
@@ -60,14 +77,14 @@
         <tbody>
             <c:forEach items="${list}" var="u">
             <tr>
-              <td><a href="editform/${u.assignNum}" style="color: #222222; text-decoration: none">${u.assignNum}</a></td>
+              <td id="${u.assignNum}"><a href="editform/${u.assignNum}" style="color: #222222; text-decoration: none">${u.assignNum}</a></td>
               <td>${u.assignLevel}</td>
               <td>${u.assignName}</td>
               <td>${u.className}</td>
               <td>${u.createDate}</td>
               <td>${u.dueDate}</td>
               <td><script>trueOrFalse(${u.teamAssign});</script></td>
-              <td><script>trueOrFalse(${u.complete});</script></td>
+              <td><script>trueOrFalse(${u.complete});</script><script>bg_color(${u.complete}, ${u.assignNum})</script></td>
               <td><a href="javascript:delete_ok('${u.assignNum}')" style="color: #222222; text-decoration: none">Delete</a></td>
             </tr>
             </c:forEach>
@@ -75,7 +92,6 @@
     </table>
 
 </div>
-
 </body>
 </html>
 
