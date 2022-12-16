@@ -29,7 +29,7 @@
             <div class="col-md-4">
                 <label class="form-label" for="userid">User ID</label>
                 <input type="text" name="userid" id="userid" class="form-control" required>
-                <div class="invalid-feedback">아이디를 입력하란 말이야!</div>
+                <div class="invalid-feedback">아이디를 입력하란 말이야!!</div>
             </div>
             <div class="col-md-4"></div>
         </div>
@@ -38,7 +38,7 @@
             <div class="col-md-4">
                 <label class="form-label" for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" required>
-                <div class="invalid-feedback">비밀번호를 입력하란 말이야!</div>
+                <div class="invalid-feedback">비밀번호를 입력하란 말이야!!</div>
             </div>
             <div class="col-md-4"></div>
         </div>
